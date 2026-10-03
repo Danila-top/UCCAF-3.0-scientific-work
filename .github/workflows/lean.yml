@@ -1,6 +1,8 @@
 name: Lean CI
 
 on:
+  push:
+    branches: ["formalization/lean-uccaf-3"]
   pull_request:
     branches: ["main"]
   workflow_dispatch:
