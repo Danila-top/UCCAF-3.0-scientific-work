@@ -43,8 +43,7 @@ def BenchmarkProvenance.isEstimated : BenchmarkProvenance → Prop
   | .BiohybridEstimated => True
   | .FictionalEstimate => True
 
-theorem BenchmarkProvenance.fictional_is_estimated
-    (h : BenchmarkProvenance = .FictionalEstimate) :
+theorem BenchmarkProvenance.fictional_is_estimated :
     BenchmarkProvenance.isEstimated .FictionalEstimate := by
   rfl
 
