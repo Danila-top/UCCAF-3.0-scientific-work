@@ -104,6 +104,17 @@ theorem MainBetterDet_asymm {a b : ResearchWork}
     · exact (ne_of_lt hba) hab.1
     · exact (Nat.not_lt_of_ge (Nat.le_of_lt hab.2)) hba.2
 
+theorem MainBetterDet_total_of_id_ne {a b : ResearchWork}
+    (h : a.id ≠ b.id) :
+    MainBetterDet a b ∨ MainBetterDet b a := by
+  by_cases hIS : MainScore a = MainScore b
+  · rcases lt_or_gt_of_ne h with hab | hba
+    · exact Or.inr ⟨hIS, hab⟩
+    · exact Or.inl ⟨hIS, hba⟩
+  · rcases lt_or_gt_of_ne hIS with hab | hba
+    · exact Or.inr (Or.inl hab)
+    · exact Or.inl (Or.inl hba)
+
 theorem MasterTopN_length_le (r : RankedWorks) (n : Nat) :
     (MasterTopN r n).length ≤ n := by
   simp [MasterTopN, List.length_take]
@@ -115,12 +126,12 @@ theorem MasterTopNDet_length_le (r : DeterministicallyRankedWorks) (n : Nat) :
 theorem MasterTopN_length_eq (r : RankedWorks) {n : Nat}
     (h : n ≤ r.items.length) :
     (MasterTopN r n).length = n := by
-  simp [MasterTopN, h, Nat.min_eq_left]
+  simp [MasterTopN, h]
 
 theorem MasterTopNDet_length_eq (r : DeterministicallyRankedWorks) {n : Nat}
     (h : n ≤ r.items.length) :
     (MasterTopNDet r n).length = n := by
-  simp [MasterTopNDet, h, Nat.min_eq_left]
+  simp [MasterTopNDet, h]
 
 theorem MasterTop120_length (r : RankedWorks)
     (h : 120 ≤ r.items.length) :
