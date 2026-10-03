@@ -4,9 +4,11 @@ import UCCAF.Scoring
 import UCCAF.Evidence
 import UCCAF.Uncertainty
 import UCCAF.Benchmark
+import UCCAF.Gates
 import UCCAF.Ranking
 
 #check UCCAF.Score
+#check UCCAF.ISScore
 #check UCCAF.ResearchWork
 #check UCCAF.UCCI
 #check UCCAF.KSI
@@ -26,8 +28,12 @@ import UCCAF.Ranking
 #check UCCAF.MainBetterDet_trans
 #check UCCAF.MasterTop150_length
 #check UCCAF.ScoreInterval
+#check UCCAF.ISScoreInterval
 #check UCCAF.PostHumanEvidenceGate
 #check UCCAF.HardDomain
 #check UCCAF.BenchmarkObservation
 #check UCCAF.BenchmarkMean
 #check UCCAF.DomainCoverage
+#check UCCAF.BreadthAssessment
+#check UCCAF.PostHumanTier
+#check UCCAF.GateAssessment
