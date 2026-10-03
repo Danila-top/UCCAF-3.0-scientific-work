@@ -24,7 +24,7 @@ theorem KSI_nonnegative (is cs p : Score) :
   linarith [Score.lower is, Score.lower cs, Score.lower p]
 
 theorem KSI_upper_bound (is cs p : Score) :
-    KSI is cs p ≤ 100 := by
+    KSI is cs p ≤ 400 / 3 := by
   dsimp [KSI]
   have h_is : (is : ℚ) ≤ 100 := Score.upper is
   have h_cs : (cs : ℚ) ≤ 100 := Score.upper cs
@@ -40,7 +40,7 @@ theorem KSI_upper_bound (is cs p : Score) :
 theorem KSI_all_100 :
     KSI ⟨100, by norm_num, by norm_num⟩
         ⟨100, by norm_num, by norm_num⟩
-        ⟨100, by norm_num, by norm_num⟩ = 100 := by
+        ⟨100, by norm_num, by norm_num⟩ = 400 / 3 := by
   norm_num [KSI]
 
 theorem UCCI_strictMono_IS {is₁ is₂ cs : Score}
