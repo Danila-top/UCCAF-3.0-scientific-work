@@ -110,7 +110,7 @@ theorem MainBetterDet_total_of_id_ne {a b : ResearchWork}
   by_cases hIS : MainScore a = MainScore b
   · rcases lt_or_gt_of_ne h with hab | hba
     · exact Or.inl (Or.inr (And.intro hIS hab))
-    · exact Or.inr (Or.inr (And.intro hIS hba))
+    · exact Or.inr (Or.inr (And.intro hIS.symm hba))
   · rcases lt_or_gt_of_ne hIS with hab | hba
     · exact Or.inr (Or.inl hab)
     · exact Or.inl (Or.inl hba)
