@@ -4,13 +4,14 @@ This branch is the first machine-checkable mathematical specification of the cur
 
 ## Formalized in phase 1
 
-1. Score values are a subtype of rationals constrained by 0 <= score <= 100.
-2. ResearchWork is a typed object containing id, title, IS, CS and P.
-3. UCCI = (IS + 2 CS) / 2.
-4. KSI = (IS + 2 CS + P) / 3.
-5. MainBetter is an IS-only strict order.
-6. MainSorted certifies that a ranking list is non-increasing in IS.
-7. MasterTopN takes the first n entries of a certified ranking.
+1. Score is a subtype of rationals constrained by 0 <= score <= 100.
+2. ISScore is a separate primary-intelligence subtype constrained by 0 <= IS <= 200, so provisional and ASI-level values above the 100% Human Swarm baseline are representable.
+3. ResearchWork contains id, title, IS, CS and P, with IS using ISScore and CS/P using Score.
+4. UCCI = (IS + 2 CS) / 2.
+5. KSI = (IS + 2 CS + P) / 3.
+6. MainBetter is an IS-only strict order.
+7. MainSorted certifies that a ranking list is non-increasing in IS.
+8. MasterTopN takes the first n entries of a certified ranking.
 
 Lean proves:
 - score lower and upper bounds by construction;
@@ -36,6 +37,7 @@ Lean proves:
 ## Formalized in phase 3 — uncertainty and hard-domain benchmark layer
 
 - ScoreInterval stores low, point and high scores with machine-checked ordering.
+- ISScoreInterval provides the same interval logic on the 0–200 IS scale used by post-human gates.
 - Interval width is proved non-negative.
 - UncertaintyRecord binds point score, interval, confidence, evidence tier, breadth state, configuration id and calibration id.
 - PostHumanEvidenceGate formalizes the baseline/configuration/IS interval/breadth/evidence/replication/status schema and proves point/interval consistency.
@@ -44,6 +46,10 @@ Lean proves:
 - BenchmarkMean is an explicit equal-weight aggregate over a finite set of benchmark observations.
 - BenchmarkMean is proved to lie in [0,100].
 - DomainCoverage records the versioned domain set and independence-map identifier; its size is bounded by the 12-domain registry.
+- BreadthState.ofCount encodes B0=0, B1=1, B2=2, B3=3–4 and B4=5+ hard domains.
+- BreadthAssessment separates independent-domain coverage from the primary specialization set.
+- PostHumanTier encodes the protocol's current maximum IS bands: 100, 101, 120, 149 and 200.
+- GateAssessment formalizes provisional, advanced, confirmed and ASI-extension eligibility predicates.
 
 ## Scientific boundary
 
@@ -53,9 +59,8 @@ The formalization deliberately keeps benchmark evidence separate from the primar
 
 ## Next layers
 
-- configuration identity as a structured, versioned object;
-- explicit breadth gates B0–B4 and post-human eligibility predicates;
+- structured configuration identity with model/version, tools, harness, topology, resources, memory and environment;
+- benchmark batteries with explicit per-domain independence maps;
 - measured/estimated/fictional benchmark separation with stronger invariants;
-- benchmark batteries and domain-wise aggregation policies;
 - score revision records and evaluator disagreement;
 - executable validation tests and CI-side axiom/audit checks.
