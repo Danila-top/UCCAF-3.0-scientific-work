@@ -2,7 +2,7 @@ import Mathlib
 
 namespace UCCAF
 
-def Score := {x : ℚ // 0 ≤ x ∧ x ≤ 100}
+abbrev Score := {x : ℚ // 0 ≤ x ∧ x ≤ 100}
 
 namespace Score
 
