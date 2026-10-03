@@ -26,8 +26,11 @@ theorem KSI_nonnegative (is cs p : Score) :
 theorem KSI_upper_bound (is cs p : Score) :
     KSI is cs p ≤ 100 := by
   dsimp [KSI]
+  have h_is : (is : ℚ) ≤ 100 := Score.upper is
+  have h_cs : (cs : ℚ) ≤ 100 := Score.upper cs
+  have h_p : (p : ℚ) ≤ 100 := Score.upper p
   apply (div_le_iff₀ (by norm_num : (0 : ℚ) < 3)).2
-  nlinarith [Score.upper is, Score.upper cs, Score.upper p]
+  linarith
 
 theorem KSI_all_100 :
     KSI ⟨100, by norm_num, by norm_num⟩
