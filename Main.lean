@@ -1,6 +1,7 @@
 import UCCAF.Score
 import UCCAF.Model
 import UCCAF.Scoring
+import UCCAF.Evidence
 import UCCAF.Ranking
 
 #check UCCAF.Score
@@ -8,7 +9,17 @@ import UCCAF.Ranking
 #check UCCAF.UCCI
 #check UCCAF.KSI
 #check UCCAF.MainBetter
+#check UCCAF.MainBetterDet
+#check UCCAF.DeterministicallyRankedWorks
+#check UCCAF.EvidenceRecord
+#check UCCAF.AttributionRecord
 #check UCCAF.RankedWorks
 #check UCCAF.MasterTopN
+#check UCCAF.MasterTop120
+#check UCCAF.MasterTop150
+#check UCCAF.MasterTop120Det
+#check UCCAF.MasterTop150Det
 #check UCCAF.KSI_all_100
-#check UCCAF.MasterTopN_length_le
+#check UCCAF.AttributionTotal_eq_100
+#check UCCAF.MainBetterDet_trans
+#check UCCAF.MasterTop150_length
