@@ -114,6 +114,9 @@ def DomainCoverage.contains (c : DomainCoverage) (d : HardDomain) : Prop :=
 theorem DomainCoverage.count_le_twelve (c : DomainCoverage) :
     c.count ≤ 12 := by
   dsimp [DomainCoverage.count]
-  simpa using Finset.card_le_univ c.domains
+  have hcard : Fintype.card HardDomain = 12 := by
+    decide
+  have h := Finset.card_le_univ c.domains
+  simpa [hcard] using h
 
 end UCCAF
