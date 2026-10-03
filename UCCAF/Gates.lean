@@ -88,7 +88,8 @@ def GateAssessment.provisionalEligible (g : GateAssessment) : Prop :=
     g.keyResultIndependentlyVerified = true
 
 def GateAssessment.advancedEligible (g : GateAssessment) : Prop :=
-  2 ≤ g.qualifiedDomains.card ∧
+  g.evidence.atLeastE3 ∧
+    2 ≤ g.qualifiedDomains.card ∧
     g.breadth.state ≠ .B0 ∧
     g.breadth.state ≠ .B1 ∧
     g.keyResultIndependentlyVerified = true
