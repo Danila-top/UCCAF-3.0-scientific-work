@@ -32,6 +32,26 @@ theorem ScoreInterval.width_nonnegative (i : ScoreInterval) :
   dsimp [ScoreInterval.width]
   linarith [i.low_le_high]
 
+structure ISScoreInterval where
+  low : ISScore
+  point : ISScore
+  high : ISScore
+  low_le_point : (low : ℚ) ≤ point
+  point_le_high : (point : ℚ) ≤ high
+  deriving DecidableEq, Repr
+
+theorem ISScoreInterval.low_le_high (i : ISScoreInterval) :
+    (i.low : ℚ) ≤ i.high := by
+  exact le_trans i.low_le_point i.point_le_high
+
+def ISScoreInterval.width (i : ISScoreInterval) : ℚ :=
+  (i.high : ℚ) - i.low
+
+theorem ISScoreInterval.width_nonnegative (i : ISScoreInterval) :
+    0 ≤ i.width := by
+  dsimp [ISScoreInterval.width]
+  linarith [i.low_le_high]
+
 structure UncertaintyRecord where
   point : Score
   interval : ScoreInterval
@@ -46,8 +66,8 @@ structure UncertaintyRecord where
 structure PostHumanEvidenceGate where
   baselineVersion : String
   configurationId : String
-  pointIS : Score
-  interval : ScoreInterval
+  pointIS : ISScore
+  interval : ISScoreInterval
   confidence : Confidence
   breadth : BreadthState
   evidence : EvidenceTier
