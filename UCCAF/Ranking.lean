@@ -41,6 +41,6 @@ theorem MainBetter_iff_IS {a b : ResearchWork} :
 
 theorem MasterTopN_length_le (r : RankedWorks) (n : Nat) :
     (MasterTopN r n).length ≤ n := by
-  simpa [MasterTopN, List.length_take] using Nat.min_le_left n r.items.length
+  simp [MasterTopN, List.length_take]
 
 end UCCAF
