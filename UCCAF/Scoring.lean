@@ -35,7 +35,8 @@ theorem KSI_upper_bound (is cs p : Score) :
       (is : ℚ) + 2 * (cs : ℚ) + (p : ℚ) ≤ 100 + 2 * 100 + 100 :=
     add_le_add (add_le_add h_is h_2cs) h_p
   apply (div_le_iff₀ (by norm_num : (0 : ℚ) < 3)).2
-  convert h_sum using 1 <;> norm_num
+  norm_num at h_sum ⊢
+  exact h_sum
 
 theorem KSI_all_100 :
     KSI ⟨100, by norm_num, by norm_num⟩
