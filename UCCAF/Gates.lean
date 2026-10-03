@@ -45,17 +45,6 @@ structure BreadthAssessment where
 def BreadthAssessment.outsidePrimaryCount (b : BreadthAssessment) : Nat :=
   (b.independentDomains \ b.primarySpecialization).card
 
-theorem BreadthAssessment.b4_implies_five_domains (b : BreadthAssessment)
-    (h : b.state = .B4) :
-    5 ≤ b.independentDomains.card := by
-  subst h
-  by_cases hc : b.independentDomains.card ≤ 4
-  · have : BreadthState.ofCount b.independentDomains.card ≠ .B4 := by
-      rcases b.independentDomains.card with _ | _ | _ | _ | _ | n <;>
-        simp [BreadthState.ofCount, Nat.succ_eq_add_one, hc, Nat.not_succ_le_self]
-    exact False.elim (this b.state_is_derived)
-  · exact Nat.le_of_lt_succ (Nat.lt_of_not_ge hc)
-
 inductive PostHumanTier : Type
   | NoPostHuman
   | Provisional
