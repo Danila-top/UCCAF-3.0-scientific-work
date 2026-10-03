@@ -18,14 +18,48 @@ inductive HardDomain : Type
   | societalInstitutionalReasoning
   deriving DecidableEq, Fintype, Repr
 
+inductive BenchmarkProvenance : Type
+  | RealMeasured
+  | RealEstimated
+  | HistoricalProxy
+  | BiologicalProxy
+  | BiohybridEstimated
+  | FictionalEstimate
+  deriving DecidableEq, Repr
+
+def BenchmarkProvenance.reality : BenchmarkProvenance → RealityClass
+  | .RealMeasured => .Real
+  | .RealEstimated => .Real
+  | .HistoricalProxy => .HistoricalProxy
+  | .BiologicalProxy => .BiologicalProxy
+  | .BiohybridEstimated => .Biohybrid
+  | .FictionalEstimate => .Fiction
+
+def BenchmarkProvenance.isEstimated : BenchmarkProvenance → Prop
+  | .RealMeasured => False
+  | .RealEstimated => True
+  | .HistoricalProxy => True
+  | .BiologicalProxy => True
+  | .BiohybridEstimated => True
+  | .FictionalEstimate => True
+
+theorem BenchmarkProvenance.fictional_is_estimated
+    (h : BenchmarkProvenance = .FictionalEstimate) :
+    BenchmarkProvenance.isEstimated .FictionalEstimate := by
+  rfl
+
+theorem BenchmarkProvenance.fictional_is_not_real :
+    BenchmarkProvenance.reality .FictionalEstimate ≠ .Real := by
+  simp [BenchmarkProvenance.reality]
+
+
 structure BenchmarkObservation where
   id : Nat
   domain : HardDomain
   name : String
   score : Score
-  reality : RealityClass
+  provenance : BenchmarkProvenance
   evidence : EvidenceTier
-  estimated : Bool
   deriving DecidableEq, Repr
 
 def BenchmarkMean (xs : Finset BenchmarkObservation) : ℚ :=
