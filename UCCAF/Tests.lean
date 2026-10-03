@@ -26,9 +26,8 @@ def exampleBenchmark : BenchmarkObservation :=
     domain := .mathematics
     name := "Example benchmark"
     score := ⟨42, by norm_num, by norm_num⟩
-    reality := .Real
-    evidence := .E2
-    estimated := true }
+    provenance := .RealEstimated
+    evidence := .E2 }
 
 theorem singleton_benchmark_smoke :
     BenchmarkMean {exampleBenchmark} = 42 := by
