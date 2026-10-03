@@ -79,6 +79,6 @@ structure PostHumanEvidenceGate where
 theorem PostHumanEvidenceGate.point_matches_interval'
     (g : PostHumanEvidenceGate) :
     (g.interval.point : ℚ) = g.pointIS := by
-  exact g.point_matches_interval
+  exact congrArg (fun s : ISScore => (s : ℚ)) g.point_matches_interval
 
 end UCCAF
