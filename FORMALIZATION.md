@@ -14,8 +14,9 @@ This branch is the first machine-checkable mathematical specification of the cur
 
 Lean proves:
 - score lower and upper bounds by construction;
-- UCCI and KSI bounds;
-- KSI(100,100,100) = 100;
+- UCCI is in [0, 150];
+- KSI is in [0, 400/3];
+- KSI(100,100,100) = 400/3;
 - strict monotonicity of UCCI and KSI in IS;
 - irreflexivity, transitivity and asymmetry of MainBetter;
 - equivalence of MainBetter with the IS comparison;
