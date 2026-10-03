@@ -16,7 +16,7 @@ inductive HardDomain : Type
   | astronomyCosmology
   | longHorizonAgency
   | societalInstitutionalReasoning
-  deriving DecidableEq, Repr
+  deriving DecidableEq, Fintype, Repr
 
 structure BenchmarkObservation where
   id : Nat
