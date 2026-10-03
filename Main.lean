@@ -2,6 +2,8 @@ import UCCAF.Score
 import UCCAF.Model
 import UCCAF.Scoring
 import UCCAF.Evidence
+import UCCAF.Uncertainty
+import UCCAF.Benchmark
 import UCCAF.Ranking
 
 #check UCCAF.Score
@@ -23,3 +25,9 @@ import UCCAF.Ranking
 #check UCCAF.AttributionTotal_eq_100
 #check UCCAF.MainBetterDet_trans
 #check UCCAF.MasterTop150_length
+#check UCCAF.ScoreInterval
+#check UCCAF.PostHumanEvidenceGate
+#check UCCAF.HardDomain
+#check UCCAF.BenchmarkObservation
+#check UCCAF.BenchmarkMean
+#check UCCAF.DomainCoverage
